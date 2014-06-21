@@ -20,13 +20,30 @@ msg_parse_result <- function(colsums, r, c){
 }
 
 ## We assume file has been downloaded and extracted already
-d = "/home/knut/Documents/coursera/datascience/getting_data"
+d = "/home/knut/Documents/coursera/datascience/getting_data/R-course--getting-data--project"
+if(! file.exists(d)){
+        warning(sprintf("Directory '%s' not found. Enter full path to directory on your computer.", d ), immediate.=TRUE)
+        n <- FALSE;
+        while(! n){
+                cat("Path (Ctrl-C to exit):")
+                d <- readLines(con="stdin", n=1)
+                n <- ifelse(! file.exists(d),FALSE, TRUE)
+                #if(n == "0"){break}  # breaks when hit enter
+                
+        }
+        setwd(d)
+        warning(paste0("Now inside ", getwd()), immediate.=FALSE)
+}
 setwd(d)
 d1 = "UCI HAR Dataset"
 if(! file.exists(d1)){      
-        message(paste0("Subdir ", d1, " not found,. Must already exist and contain data files."))
-        message("You can run helper script download-and-extract.R to download and unzip necessary data files")
-        source("download-and-extract.R")
+        stop(paste0("Subdir ", d1, " not found,. Must already exist and contain *.txt data files."))
+        
+        #message("You can run helper script download-and-extract.R to download and unzip necessary data files")
+        #source("download-and-extract.R")
+        #message(paste0("Subdir ", d1, " not found,. Must already exist and contain data files."))
+        #message("You can run helper script download-and-extract.R to download and unzip necessary data files")
+        #source("download-and-extract.R")
 }
 
 ###read in all files extracted from the zip-file, will filter this many times later.
@@ -67,8 +84,8 @@ subjectdata <- do.call("rbind",lapply(subjectdatafile.use,
 head(subjectdata)
 msg_parse_result(colSums(is.na(subjectdata)), nrow(subjectdata),  length(names(subjectdata))) # check that there are no NAs in the dataset
 
-
-# ### Merge the sensor data
+#- this is not really required for this assignment but I have done it nevertheless.
+# ### Merge the sensor data 
 # 
 # sensordatafile.list <- file.list[grep( "Inertial Signals", file.list)]
 # n <- 2
