@@ -1,7 +1,7 @@
 Getting and Cleaning Data - R Course Project
 =======================
 
-This repo contains a single R script that processes data as required by  the [Coursera course][1] project/assigment of week 3.
+This repo contains a single R script that processes data as required by  the [Coursera course "Getting and Cleaning Data"][1] project/assigment of week 3.
 Instructions given in the [assignment instructions][2]. (You need to be logged in with Coursera to read this.  
 
 Main Features
