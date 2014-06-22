@@ -16,10 +16,25 @@ This codebook lists the data types in the output file, `tidy-sensordata--mean-st
 
 This file is an R data frame wriiten to disk as a tab-separated text file.
 
-There are two string variables, Activity and PersonID in the first column. They are "ID columns". In the other columns (index >= 3), there are only numeric values. Standard Units of measure of these data types should be  m/s² (meters per seconds squared). But actually it is unknown what the units are (it could be intensities or uncorrected acceleration values).
+There are two string variables, Activity and PersonID in the first column. They are "ID columns". In the other columns (index >= 3), there are only numeric values. 
+All numeric columns are sensor data which can be grouped by prefix, middle part, suffix.
 
-There are these columns with their R datatypes:
+Prefix values: 
+    - t - measurements in the time domain
+    - f - Measurements in the frequency domain
+
+Middle Part:
+    - Sensor type and measurement
+
+Suffix values:
+    - mean: Arithmetic Mean value
+    - std: Standard deviation
+
+Standard Units of measure of these data types should be  m/s² (meters per seconds squared). But actually it is unknown what the units are (it could be intensities or uncorrected acceleration values).
+
+Column definitions
 ------------------------------------------------
+There are these columns with their R datatypes:
 <pre>
 Col. 1 -  Activity    -- character
 
@@ -27,133 +42,133 @@ Col. 2 -  PersonID    -- character
 
 Col. 3 -  tBodyAcc-mean-X -- numeric
 
-Col. 4 -  tBodyAcc-mean-Y
+Col. 4 -  tBodyAcc-mean-Y -- numeric 
 
-Col. 5 -  tBodyAcc-mean-Z
+Col. 5 -  tBodyAcc-mean-Z -- numeric
 
-Col. 6 -  tBodyAcc-std-X
+Col. 6 -  tBodyAcc-std-X -- numeric
 
-Col. 7 -  tBodyAcc-std-Y
+Col. 7 -  tBodyAcc-std-Y -- numeric
 
-Col. 8 -  tBodyAcc-std-Z
+Col. 8 -  tBodyAcc-std-Z -- numeric
 
-Col. 9 -  tGravityAcc-mean-X
+Col. 9 -  tGravityAcc-mean-X -- numeric
 
-Col. 10 -  tGravityAcc-mean-Y
+Col. 10 -  tGravityAcc-mean-Y -- numeric
 
-Col. 11 -  tGravityAcc-mean-Z
+Col. 11 -  tGravityAcc-mean-Z -- numeric
 
-Col. 12 -  tGravityAcc-std-X
+Col. 12 -  tGravityAcc-std-X -- numeric
 
-Col. 13 -  tGravityAcc-std-Y
+Col. 13 -  tGravityAcc-std-Y -- numeric
 
-Col. 14 -  tGravityAcc-std-Z
+Col. 14 -  tGravityAcc-std-Z -- numeric
 
-Col. 15 -  tBodyAccJerk-mean-X
+Col. 15 -  tBodyAccJerk-mean-X -- numeric
 
-Col. 16 -  tBodyAccJerk-mean-Y
+Col. 16 -  tBodyAccJerk-mean-Y -- numeric
 
-Col. 17 -  tBodyAccJerk-mean-Z
+Col. 17 -  tBodyAccJerk-mean-Z -- numeric
 
-Col. 18 -  tBodyAccJerk-std-X
+Col. 18 -  tBodyAccJerk-std-X -- numeric
 
-Col. 19 -  tBodyAccJerk-std-Y
+Col. 19 -  tBodyAccJerk-std-Y -- numeric
 
-Col. 20 -  tBodyAccJerk-std-Z
+Col. 20 -  tBodyAccJerk-std-Z -- numeric
 
-Col. 21 -  tBodyGyro-mean-X
+Col. 21 -  tBodyGyro-mean-X -- numeric
 
-Col. 22 -  tBodyGyro-mean-Y
+Col. 22 -  tBodyGyro-mean-Y -- numeric
 
-Col. 23 -  tBodyGyro-mean-Z
+Col. 23 -  tBodyGyro-mean-Z -- numeric
 
-Col. 24 -  tBodyGyro-std-X
+Col. 24 -  tBodyGyro-std-X -- numeric
 
-Col. 25 -  tBodyGyro-std-Y
+Col. 25 -  tBodyGyro-std-Y -- numeric
 
-Col. 26 -  tBodyGyro-std-Z
+Col. 26 -  tBodyGyro-std-Z -- numeric
 
-Col. 27 -  tBodyGyroJerk-mean-X
+Col. 27 -  tBodyGyroJerk-mean-X -- numeric
 
-Col. 28 -  tBodyGyroJerk-mean-Y
+Col. 28 -  tBodyGyroJerk-mean-Y -- numeric
 
-Col. 29 -  tBodyGyroJerk-mean-Z
+Col. 29 -  tBodyGyroJerk-mean-Z -- numeric
 
-Col. 30 -  tBodyGyroJerk-std-X
+Col. 30 -  tBodyGyroJerk-std-X -- numeric
 
-Col. 31 -  tBodyGyroJerk-std-Y
+Col. 31 -  tBodyGyroJerk-std-Y -- numeric
 
-Col. 32 -  tBodyGyroJerk-std-Z
+Col. 32 -  tBodyGyroJerk-std-Z -- numeric
 
-Col. 33 -  tBodyAccMag-mean
+Col. 33 -  tBodyAccMag-mean -- numeric
 
-Col. 34 -  tBodyAccMag-std
+Col. 34 -  tBodyAccMag-std -- numeric
 
-Col. 35 -  tGravityAccMag-mean
+Col. 35 -  tGravityAccMag-mean -- numeric
 
-Col. 36 -  tGravityAccMag-std
+Col. 36 -  tGravityAccMag-std -- numeric
 
-Col. 37 -  tBodyAccJerkMag-mean
+Col. 37 -  tBodyAccJerkMag-mean -- numeric
 
-Col. 38 -  tBodyAccJerkMag-std
+Col. 38 -  tBodyAccJerkMag-std -- numeric
 
-Col. 39 -  tBodyGyroMag-mean
+Col. 39 -  tBodyGyroMag-mean -- numeric
 
-Col. 40 -  tBodyGyroMag-std
+Col. 40 -  tBodyGyroMag-std -- numeric
 
-Col. 41 -  tBodyGyroJerkMag-mean
+Col. 41 -  tBodyGyroJerkMag-mean -- numeric
 
-Col. 42 -  tBodyGyroJerkMag-std
+Col. 42 -  tBodyGyroJerkMag-std -- numeric
 
-Col. 43 -  fBodyAcc-mean-X
+Col. 43 -  fBodyAcc-mean-X -- numeric
 
-Col. 44 -  fBodyAcc-mean-Y
+Col. 44 -  fBodyAcc-mean-Y -- numeric
 
-Col. 45 -  fBodyAcc-mean-Z
+Col. 45 -  fBodyAcc-mean-Z -- numeric
 
-Col. 46 -  fBodyAcc-std-X
+Col. 46 -  fBodyAcc-std-X -- numeric
 
-Col. 47 -  fBodyAcc-std-Y
+Col. 47 -  fBodyAcc-std-Y -- numeric
 
-Col. 48 -  fBodyAcc-std-Z
+Col. 48 -  fBodyAcc-std-Z -- numeric
 
-Col. 49 -  fBodyAccJerk-mean-X
+Col. 49 -  fBodyAccJerk-mean-X -- numeric
 
-Col. 50 -  fBodyAccJerk-mean-Y
+Col. 50 -  fBodyAccJerk-mean-Y -- numeric
 
-Col. 51 -  fBodyAccJerk-mean-Z
+Col. 51 -  fBodyAccJerk-mean-Z -- numeric
 
-Col. 52 -  fBodyAccJerk-std-X
+Col. 52 -  fBodyAccJerk-std-X -- numeric
 
-Col. 53 -  fBodyAccJerk-std-Y
+Col. 53 -  fBodyAccJerk-std-Y -- numeric
 
-Col. 54 -  fBodyAccJerk-std-Z
+Col. 54 -  fBodyAccJerk-std-Z -- numeric
 
-Col. 55 -  fBodyGyro-mean-X
+Col. 55 -  fBodyGyro-mean-X -- numeric
 
-Col. 56 -  fBodyGyro-mean-Y
+Col. 56 -  fBodyGyro-mean-Y -- numeric
 
-Col. 57 -  fBodyGyro-mean-Z
+Col. 57 -  fBodyGyro-mean-Z -- numeric
 
-Col. 58 -  fBodyGyro-std-X
+Col. 58 -  fBodyGyro-std-X -- numeric
 
-Col. 59 -  fBodyGyro-std-Y
+Col. 59 -  fBodyGyro-std-Y -- numeric
 
-Col. 60 -  fBodyGyro-std-Z
+Col. 60 -  fBodyGyro-std-Z -- numeric
 
-Col. 61 -  fBodyAccMag-mean
+Col. 61 -  fBodyAccMag-mean -- numeric
 
-Col. 62 -  fBodyAccMag-std
+Col. 62 -  fBodyAccMag-std -- numeric
 
-Col. 63 -  fBodyBodyAccJerkMag-mean
+Col. 63 -  fBodyBodyAccJerkMag-mean -- numeric
 
-Col. 64 -  fBodyBodyAccJerkMag-std
+Col. 64 -  fBodyBodyAccJerkMag-std -- numeric
 
-Col. 65 -  fBodyBodyGyroMag-mean
+Col. 65 -  fBodyBodyGyroMag-mean -- numeric
 
-Col. 66 -  fBodyBodyGyroMag-std
+Col. 66 -  fBodyBodyGyroMag-std -- numeric
 
-Col. 67 -  fBodyBodyGyroJerkMag-mean
+Col. 67 -  fBodyBodyGyroJerkMag-mean -- numeric
 
-Col. 68 -  fBodyBodyGyroJerkMag-std
+Col. 68 -  fBodyBodyGyroJerkMag-std -- numeric
 </pre>
