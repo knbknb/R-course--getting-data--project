@@ -10,7 +10,7 @@ The script
 -    Appropriately labels the data set with descriptive variable names. 
 -    Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
-Script structure is explained in README.md.
+R Script structure is explained in README.md.
 
 This codebook lists the data types in the output file, `tidy-sensordata--mean-stddev--by-activity-and-person.txt`.
 
@@ -20,6 +20,7 @@ There are two string variables, Activity and PersonID in the first column. They 
 
 There are these columns with their R datatypes:
 ------------------------------------------------
+<pre>
 Col. 1 -  Activity    -- character
 
 Col. 2 -  PersonID    -- character
@@ -155,3 +156,4 @@ Col. 66 -  fBodyBodyGyroMag-std
 Col. 67 -  fBodyBodyGyroJerkMag-mean
 
 Col. 68 -  fBodyBodyGyroJerkMag-std
+</pre>
