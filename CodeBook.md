@@ -36,9 +36,10 @@ Naming Convention of numeric columns
 
 *Suffix values:*
 
-     mean: Arithmetic Mean value
+     mean: Arithmetic Mean value (in 3 spatial directions X, Y, Z)
     
-     std: Standard deviation
+     std: Standard deviation  (in 3 spatial directions X, Y, Z)
+    
  
 Standard Units of measure of these data types should be  m/s² (meters per seconds squared). But actually it is unknown what the units are (it could be intensities or uncorrected acceleration values).
 
