@@ -3,7 +3,7 @@ Codebook.md
 
 R Markdown document serving as a codebook for the programming project of the Coursera Course "Getting and Cleaning Data".
 
-The script 
+The script  `run_analysis.R`
 -    Merges the training and the test sets to create one data set.
 -    Extracts only the measurements on the mean and standard deviation for each measurement. 
 -    Uses descriptive activity names to name the activities in the data set
@@ -16,20 +16,30 @@ This codebook lists the data types in the output file, `tidy-sensordata--mean-st
 
 This file is an R data frame wriiten to disk as a tab-separated text file.
 
+Data File structure
+------------------------------------------------
 There are two string variables, Activity and PersonID in the first column. They are "ID columns". In the other columns (index >= 3), there are only numeric values. 
 All numeric columns are sensor data which can be grouped by prefix, middle part, suffix.
 
-Prefix values: 
-    - t - measurements in the time domain
-    - f - Measurements in the frequency domain
+Naming Convention of numeric columns
+------------------------------------------------
+*Prefix values:* 
 
-Middle Part:
-    - Sensor type and measurement
+    t - measurements in the time domain 
+      
+      
+    f - Measurements in the frequency domain
 
-Suffix values:
-    - mean: Arithmetic Mean value
-    - std: Standard deviation
+*Middle Part values:*
 
+    Sensor type and measurement
+
+*Suffix values:*
+
+     mean: Arithmetic Mean value
+    
+     std: Standard deviation
+ 
 Standard Units of measure of these data types should be  m/s² (meters per seconds squared). But actually it is unknown what the units are (it could be intensities or uncorrected acceleration values).
 
 Column definitions
