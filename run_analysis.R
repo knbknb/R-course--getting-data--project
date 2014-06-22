@@ -208,7 +208,7 @@ names(aggData)[2] <- c("PersonID")
 
 options(digits=2)
 aggData[order(aggData$Activity, aggData$PersonID),1:8]
-outfile <- "tidy-sensordata--mean-stddev--by-activity-and-person.txt"
+outfile <- "tidy-sensordata--mean-stddev--by-activity-and-person2.txt"
 message(sprintf("Now writing out tidy data set to disk as tab-sep .txt-file; \n filename ='%s', \n %i rows x %i columns", outfile, nrow(aggData), ncol(aggData)))
 write.table(aggData, file = outfile, sep = "\t", row.names = FALSE)
 
