@@ -10,7 +10,7 @@ The script  `run_analysis.R`
 -    Appropriately labels the data set with descriptive variable names. 
 -    Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
-R Script structure is explained in README.md.
+R Script structure is explained in README.md and in the comments of the source code itself.
 
 This codebook lists the data types in the output file, `tidy-sensordata--mean-stddev--by-activity-and-person.txt`.
 
