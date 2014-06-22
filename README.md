@@ -13,7 +13,9 @@ In RStudio, or on the command line: Run the script `run_analysis.R` to process s
 
 ### Assumptions
 
-This script assumes that there exists a readable directory `UCI HAR Dataset` in the directory where the run_analysis.R file resides. The data provided by the instructor need to be extracted into this directory 
+This script assumes that there exists a readable directory `UCI HAR Dataset` in the directory where the run_analysis.R file resides. The data provided by the instructor need to be extracted into this subdirectory (which got created by extracting the zipfile with the input data). The R script should reside in the **parent directory** of `UCI HAR Dataset` to work properly.
+
+ I have added some code to check for the existance of the directory but this is somewhat untested (e.g., on Windows),
 
 
 
