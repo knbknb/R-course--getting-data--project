@@ -108,24 +108,25 @@ options(digits=15)
 ## We assume file has been downloaded and extracted already
 subdir <- "UCI HAR Dataset"
 dataset_found <- check_directory(subdir)
-###read in all files extracted from the zip-file, will filter this many times later.
+###read in all filenames (as full paths) extracted from the zip-file, will filter this list of strings many times, later on.
 file.list <- list.files(subdir, full.names=TRUE, recursive=TRUE, pattern="*.txt")
 
 
 
 ############################################################################################################################
-# get the feature list of mean and stddev
+# get the feature list of mean and stddev measurements (66 of 561 columns)
 ###########################################################################################################################
 
 fms <- filter_featurenames(file.list)
 #returns
 # 
 # FeatureID                     FeatureName
-# 1           1               tBodyAcc-mean()-X
-# 2           2               tBodyAcc-mean()-Y
+# 1           1               tBodyAcc-mean-X
+# 2           2               tBodyAcc-mean-Y
 # ...
-# 561 
-
+# with gaps  
+# 543 
+# 1   2   3   4   5   6  41  42  43  44  45  46  81  82  83  84  85  86 121 122 123 124 125 126 161 162 163 164 165 166 201 202 214 215 227 228 240
 
 
 
