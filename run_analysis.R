@@ -5,7 +5,7 @@
 #2. Extracts only the measurements on the mean and standard deviation for each measurement. 
 #3. Uses descriptive activity names to name the activities in the data set
 #4. Appropriately labels the data set with descriptive variable names. 
-#5. Creates a second, independent tidy data set with the average of each variable for each activity and each . 
+#5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 
 # F U N C T I O N S
@@ -25,6 +25,9 @@ msg_parse_result <- function(colsums, r, c){
         }
 }
 
+###################################################################
+## a simple helper function for testing and setting the working directory
+# input: a dirname string
 check_directory <- function(dirname){
         rcflag = FALSE
         if (file.exists(dirname)){
@@ -43,7 +46,7 @@ check_directory <- function(dirname){
                                 
                         }
                         setwd(d)
-                        warning(paste0("Now inside ", getwd()), immediate.=FALSE)
+                        warning(paste0("Now inside working directory", getwd()), immediate.=TRUE)
                 } else {
                         setwd(d)
                 }
@@ -120,7 +123,8 @@ fms <- filter_featurenames(file.list)
 # FeatureID                     FeatureName
 # 1           1               tBodyAcc-mean()-X
 # 2           2               tBodyAcc-mean()-Y
-
+# ...
+# 561 
 
 
 
@@ -133,12 +137,12 @@ datafile.list <- file.list[grep( "X_", file.list)]
 
 # find column types  , sample 1 file
 n <- 1
-datafiles.initially <- head(datafile.list,n)
-#data.initially <- read_data_fwf(datafiles.initially)
-#sample 2 rows
+datafiles.sampled <- head(datafile.list,n)
+#data.sampled <- read_data_fwf(datafiles.sampled)
+#to get datatypes of columns, sample 2 rows from 1 file first
 nr <- 2
-data.initially <- read_data(datafiles.initially, nRow=2)
-classes <- sapply(data.initially, class)
+data.sampled <- read_data(datafiles.sampled, nRow=2)
+classes <- sapply(data.sampled, class)
 
 n <- length(datafile.list)
 datafile.use <- head(datafile.list,n)
@@ -158,7 +162,10 @@ data <- data[,fms$FeatureID]
 ############################################################################################################################
 #Appropriately label the data set with descriptive variable names. 
 ############################################################################################################################
-names(data) <- fms$FeatureName
+#names(data) <- fms$FeatureName
+# add better labels, in-place remove´al of braces.  mean() => mean
+names(data) <- lapply(fms$FeatureName, FUN=function(x){x <- gsub("\\(\\)", "", x); x})
+
 message("Extracted and labeled only the measurements on the mean and standard deviation for each measurement. Values from input files:")
 head(data)
 
@@ -173,25 +180,35 @@ activitiesfile.list <- file.list[grep( "/y_", file.list)]
 activities <- do.call("rbind",lapply(activitiesfile.list , FUN=function(fn) {read.table(fn, header=FALSE, quote="", col.names=c("Act.code"))}))
 head(activities, 5)
 range(activities)
+mergedActivities <- merge(activities, activities_labels, by.x ="Act.code", by.y="Act.code", all=TRUE, sort=FALSE)
 
+# for consistency reasons, also make a two-column data frame from vector of person-ids 
 subjectlabelfile.list <- file.list[grep( "subject_", file.list)]
+subjects <- do.call("rbind",lapply(subjectlabelfile.list , FUN=function(fn) {read.table(fn, header=FALSE, quote="", col.names=c("SubjID"))}))
+subjects$SubjLabel <- sprintf("Person_%02i",subjects$SubjID) 
 
-subjectlabels <- do.call("rbind",lapply(subjectlabelfile.list , FUN=function(fn) {read.table(fn, header=FALSE, quote="", col.names=c("SubjID"))}))
-#cbind(subjectlabels, "SubjName", function(x){paste0("Person") )
-
- 
-head(subjectlabels, 3)
-range(subjectlabels)
+unique(subjects[order(subjects$SubjLabel),])
 
 
 
 ############################################################################################################################
 #Create a second, independent tidy data set with the average of each variable 
-#for each activity and each . 
+#for each activity and each subject. 
 ############################################################################################################################
+#add subject data to the left of the 561-features -data frame
+unaggData <- cbind(activities, subjects, mergedActivities, data)
 
+head(unaggData[,1:8])        
+## average the data sets
 
+aggData <- aggregate(data, by=list(unaggData$Act.label, unaggData$SubjLabel), FUN = mean)
+names(aggData)[1] <- c("Activity")
+names(aggData)[2] <- c("PersonID")
 
-
+options(digits=2)
+aggData[order(aggData$Activity, aggData$PersonID),1:8]
+outfile <- "tidy-sensordata--mean-stddev--by-activity-and-person.txt"
+message(sprintf("Now writing out tidy data set to disk as tab-sep .txt-file; \n filename ='%s', \n %i rows x %i columns", outfile, nrow(aggData), ncol(aggData)))
+write.table(aggData, file = outfile, sep = "\t", row.names = FALSE)
 
 
